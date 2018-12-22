@@ -1,4 +1,4 @@
-package ru.aaxee.spring.homework1.domain.entity;
+package ru.aaxee.spring.homework1.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

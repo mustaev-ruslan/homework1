@@ -1,20 +1,19 @@
-package ru.aaxee.spring.homework1.domain.service;
+package ru.aaxee.spring.homework1.service;
 
 import lombok.AllArgsConstructor;
-import ru.aaxee.spring.homework1.domain.entity.QuizResult;
-import ru.aaxee.spring.homework1.domain.entity.Student;
-
-import java.io.PrintStream;
+import ru.aaxee.spring.homework1.entity.QuizResult;
+import ru.aaxee.spring.homework1.entity.Student;
 
 @AllArgsConstructor
 public class ConsoleResultPrintService implements ResultPrintService {
 
     private String congratulation;
-    private PrintStream printStream;
+    private InOutService inOutService;
 
+    @Override
     public void print(Student student, QuizResult quizResult) {
 
-        printStream.println(
+        inOutService.write(
                 congratulation + " " +
                         student.getLastName() + " " + student.getFirstName() + ", " +
                         "Вы ответили на " + quizResult.getCorrectAnswersCount() +

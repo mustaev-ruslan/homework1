@@ -1,9 +1,9 @@
-package ru.aaxee.spring.homework1.domain.service;
+package ru.aaxee.spring.homework1.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.aaxee.spring.homework1.domain.entity.QuizQuestion;
-import ru.aaxee.spring.homework1.infrastructure.exception.QuizException;
+import ru.aaxee.spring.homework1.entity.QuizQuestion;
+import ru.aaxee.spring.homework1.exception.QuizException;
 
 import java.util.List;
 
