@@ -11,11 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 public class ConsoleQuizService implements QuizService {
 
-    private InOutService inOutService;
+    private final InOutService inOutService;
+    private final I18n i18n;
 
     @Override
     public QuizResult run(List<QuizQuestion> quizQuestionList, int maxQuestions) {
-        inOutService.write("Внимание!");
+        inOutService.write(i18n.translate("Attention!"));
         int correctAnswersCount = 0;
         int to = Math.min(maxQuestions, quizQuestionList.size());
         for (QuizQuestion quizQuestion : quizQuestionList.subList(0, to)) {

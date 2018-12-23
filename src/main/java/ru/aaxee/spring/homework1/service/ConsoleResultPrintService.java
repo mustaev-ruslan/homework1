@@ -9,17 +9,22 @@ import ru.aaxee.spring.homework1.entity.Student;
 @AllArgsConstructor
 public class ConsoleResultPrintService implements ResultPrintService {
 
-    private String congratulation;
-    private InOutService inOutService;
+    private final InOutService inOutService;
+    private final I18n i18n;
 
     @Override
     public void print(Student student, QuizResult quizResult) {
 
+        //String Congratulation! = messageSource.getMessage("Congratulation!", null, Locale.getDefault());
+
         inOutService.write(
-                congratulation + " " +
+                i18n.translate("Congratulation!") + " " +
                         student.getLastName() + " " + student.getFirstName() + ", " +
-                        "Вы ответили на " + quizResult.getCorrectAnswersCount() +
-                        " из " + quizResult.getQuestionsCount() + " вопросов."
+                        i18n.translate("Your answered on {0} questions. All count: {1}",
+                                quizResult.getCorrectAnswersCount(),
+                                quizResult.getQuestionsCount()
+                        )
         );
+
     }
 }

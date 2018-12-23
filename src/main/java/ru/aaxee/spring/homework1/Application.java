@@ -1,6 +1,7 @@
 package ru.aaxee.spring.homework1;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.entity.QuizResult;
@@ -15,16 +16,22 @@ import ru.aaxee.spring.homework1.service.StudentService;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 class Application {
 
-    private StudentService studentService;
-    private QuizLoaderService quizLoaderService;
-    private QuizService quizService;
-    private ResultPrintService resultPrintService;
+    private final StudentService studentService;
+    private final QuizLoaderService quizLoaderService;
+    private final QuizService quizService;
+    private final ResultPrintService resultPrintService;
+
+    @Value("${quiz.name}")
+    private String quizName;
+
+    @Value("#{new Integer('${quiz.maxQuestions}')}")
+    private Integer maxQuestions;
 
     void run() throws QuizException {
-        QuizSettings quizSettings = new QuizSettings("geo_quiz", 5);
+        QuizSettings quizSettings = new QuizSettings(quizName, maxQuestions);
         Student student = studentService.getStudent();
         List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList(quizSettings.getQuizName());
         QuizResult quizResult = quizService.run(quizQuestionList, quizSettings.getMaxQuestions());

@@ -8,13 +8,14 @@ import ru.aaxee.spring.homework1.entity.Student;
 @AllArgsConstructor
 public class ConsoleStudentService implements StudentService {
 
-    private InOutService inOutService;
+    private final I18n i18n;
+    private final InOutService inOutService;
 
     @Override
     public Student getStudent() {
-        inOutService.write("Фамилия:");
+        inOutService.write(i18n.translate("Second name:"));
         String lastName = inOutService.read();
-        inOutService.write("Имя:");
+        inOutService.write(i18n.translate("First name:"));
         String firstName = inOutService.read();
         return new Student(firstName, lastName);
     }
