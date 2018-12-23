@@ -1,9 +1,11 @@
 package ru.aaxee.spring.homework1.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 import ru.aaxee.spring.homework1.entity.Student;
 
+@Service
 @AllArgsConstructor
 public class ConsoleResultPrintService implements ResultPrintService {
 

@@ -1,11 +1,13 @@
 package ru.aaxee.spring.homework1.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 
 import java.util.List;
 
+@Service
 @AllArgsConstructor
 public class ConsoleQuizService implements QuizService {
 
