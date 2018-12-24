@@ -2,6 +2,7 @@ package ru.aaxee.spring.homework1.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.aaxee.spring.homework1.aspect.Log;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 
@@ -14,6 +15,7 @@ public class ConsoleQuizService implements QuizService {
     private final InOutService inOutService;
     private final I18n i18n;
 
+    @Log
     @Override
     public QuizResult run(List<QuizQuestion> quizQuestionList, int maxQuestions) {
         inOutService.write(i18n.tr("Attention!"));

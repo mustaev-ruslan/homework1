@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import ru.aaxee.spring.homework1.aspect.Log;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.exception.QuizException;
 
@@ -22,6 +23,7 @@ public class CsvQuizLoaderService implements QuizLoaderService {
     private final I18n i18n;
 
     @Override
+    @Log
     public List<QuizQuestion> getQuizQuestionList(String quizFilePath) throws QuizException {
         Resource geoQuizResource = new ClassPathResource(quizFilePath);
         InputStream geoQuizInputStream;

@@ -3,6 +3,7 @@ package ru.aaxee.spring.homework1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.aaxee.spring.homework1.aspect.Log;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 import ru.aaxee.spring.homework1.entity.QuizSettings;
@@ -33,6 +34,7 @@ class Application {
     private Integer maxQuestions;
 
 
+    @Log
     void run() throws QuizException {
         QuizSettings quizSettings = new QuizSettings(quizName, maxQuestions, locale);
         Student student = studentService.getStudent();

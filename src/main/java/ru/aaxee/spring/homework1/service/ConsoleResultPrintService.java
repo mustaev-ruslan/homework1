@@ -2,6 +2,7 @@ package ru.aaxee.spring.homework1.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.aaxee.spring.homework1.aspect.Log;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 import ru.aaxee.spring.homework1.entity.Student;
 
@@ -12,10 +13,9 @@ public class ConsoleResultPrintService implements ResultPrintService {
     private final InOutService inOutService;
     private final I18n i18n;
 
+    @Log
     @Override
     public void print(Student student, QuizResult quizResult) {
-
-        //String Congratulation! = messageSource.getMessage("Congratulation!", null, Locale.getDefault());
 
         inOutService.write(
                 i18n.tr("Congratulation!") + " " +
