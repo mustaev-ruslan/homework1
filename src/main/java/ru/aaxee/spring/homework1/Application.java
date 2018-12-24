@@ -27,7 +27,7 @@ class Application {
     @Value("${quiz.name}")
     private String quizName;
 
-    @Value("#{new Integer('${quiz.maxQuestions}')}")
+    @Value("${quiz.maxQuestions}")
     private Integer maxQuestions;
 
     void run() throws QuizException {
