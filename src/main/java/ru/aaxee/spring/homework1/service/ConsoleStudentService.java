@@ -13,9 +13,9 @@ public class ConsoleStudentService implements StudentService {
 
     @Override
     public Student getStudent() {
-        inOutService.write(i18n.translate("Second name:"));
+        inOutService.write(i18n.tr("Second name:"));
         String lastName = inOutService.read();
-        inOutService.write(i18n.translate("First name:"));
+        inOutService.write(i18n.tr("First name:"));
         String firstName = inOutService.read();
         return new Student(firstName, lastName);
     }

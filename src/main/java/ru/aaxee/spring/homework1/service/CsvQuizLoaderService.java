@@ -34,7 +34,7 @@ public class CsvQuizLoaderService implements QuizLoaderService {
                     .with(CsvSchema.emptySchema().withColumnSeparator(';'))
                     .readValue(geoQuizInputStream);
         } catch (IOException e) {
-            throw new QuizException(i18n.translate("Cannot get quiz {0}", quizName), e);
+            throw new QuizException(i18n.tr("Cannot get quiz {0}", quizName), e);
         }
         List<QuizQuestion> quizQuestionList = quizQuestionRows.stream()
                 .map(row -> new QuizQuestion(row.get(0), row.get(1)))

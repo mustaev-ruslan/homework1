@@ -16,7 +16,7 @@ public class ConsoleQuizService implements QuizService {
 
     @Override
     public QuizResult run(List<QuizQuestion> quizQuestionList, int maxQuestions) {
-        inOutService.write(i18n.translate("Attention!"));
+        inOutService.write(i18n.tr("Attention!"));
         int correctAnswersCount = 0;
         int to = Math.min(maxQuestions, quizQuestionList.size());
         for (QuizQuestion quizQuestion : quizQuestionList.subList(0, to)) {

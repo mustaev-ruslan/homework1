@@ -18,9 +18,9 @@ public class ConsoleResultPrintService implements ResultPrintService {
         //String Congratulation! = messageSource.getMessage("Congratulation!", null, Locale.getDefault());
 
         inOutService.write(
-                i18n.translate("Congratulation!") + " " +
+                i18n.tr("Congratulation!") + " " +
                         student.getLastName() + " " + student.getFirstName() + ", " +
-                        i18n.translate("Your answered on {0} questions. All count: {1}",
+                        i18n.tr("Your answered on {0} questions. All count: {1}",
                                 quizResult.getCorrectAnswersCount(),
                                 quizResult.getQuestionsCount()
                         )
