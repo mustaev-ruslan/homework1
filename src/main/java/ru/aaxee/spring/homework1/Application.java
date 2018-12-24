@@ -14,6 +14,7 @@ import ru.aaxee.spring.homework1.service.ResultPrintService;
 import ru.aaxee.spring.homework1.service.StudentService;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,7 @@ class Application {
     private final QuizLoaderService quizLoaderService;
     private final QuizService quizService;
     private final ResultPrintService resultPrintService;
+    private final Locale locale;
 
     @Value("${quiz.name}")
     private String quizName;
@@ -30,10 +32,11 @@ class Application {
     @Value("${quiz.maxQuestions}")
     private Integer maxQuestions;
 
+
     void run() throws QuizException {
-        QuizSettings quizSettings = new QuizSettings(quizName, maxQuestions);
+        QuizSettings quizSettings = new QuizSettings(quizName, maxQuestions, locale);
         Student student = studentService.getStudent();
-        List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList(quizSettings.getQuizName());
+        List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList(quizSettings.getFilePath());
         QuizResult quizResult = quizService.run(quizQuestionList, quizSettings.getMaxQuestions());
         resultPrintService.print(student, quizResult);
     }

@@ -17,7 +17,7 @@ class CsvQuizLoaderServiceTest {
     void getCorrectQuizQuestionList() throws QuizException {
         QuizLoaderService quizLoaderService = new CsvQuizLoaderService(new NoI18n());
 
-        List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList("geo_quiz");
+        List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList("geo_quiz/geo_quiz_ru-RU.csv");
 
         assertThat(quizQuestionList)
                 .isNotEmpty()

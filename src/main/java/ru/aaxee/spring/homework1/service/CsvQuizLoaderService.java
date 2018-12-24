@@ -22,8 +22,8 @@ public class CsvQuizLoaderService implements QuizLoaderService {
     private final I18n i18n;
 
     @Override
-    public List<QuizQuestion> getQuizQuestionList(String quizName) throws QuizException {
-        Resource geoQuizResource = new ClassPathResource(quizName + ".csv");
+    public List<QuizQuestion> getQuizQuestionList(String quizFilePath) throws QuizException {
+        Resource geoQuizResource = new ClassPathResource(quizFilePath);
         InputStream geoQuizInputStream;
         List<List<String>> quizQuestionRows;
         try {
@@ -34,7 +34,7 @@ public class CsvQuizLoaderService implements QuizLoaderService {
                     .with(CsvSchema.emptySchema().withColumnSeparator(';'))
                     .readValue(geoQuizInputStream);
         } catch (IOException e) {
-            throw new QuizException(i18n.tr("Cannot get quiz {0}", quizName), e);
+            throw new QuizException(i18n.tr("Cannot get quiz {0}", quizFilePath), e);
         }
         List<QuizQuestion> quizQuestionList = quizQuestionRows.stream()
                 .map(row -> new QuizQuestion(row.get(0), row.get(1)))
