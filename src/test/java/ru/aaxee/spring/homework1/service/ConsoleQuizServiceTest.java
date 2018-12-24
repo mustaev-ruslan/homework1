@@ -17,7 +17,7 @@ class ConsoleQuizServiceTest {
         List<String> input = new LinkedList<>(Arrays.asList("Ответ1", "Не ответ"));
         List<String> output = new LinkedList<>();
         InOutService inOutService = new FakeInOutService(input, output);
-        QuizService quizService = new ConsoleQuizService(inOutService);
+        QuizService quizService = new ConsoleQuizService(inOutService, new NoI18n());
         List<QuizQuestion> quizQuestions = new ArrayList<>();
         quizQuestions.add(new QuizQuestion("Вопрос1", "Ответ1"));
         quizQuestions.add(new QuizQuestion("Вопрос2", "Ответ2"));
@@ -27,6 +27,6 @@ class ConsoleQuizServiceTest {
         assertThat(result).isNotNull();
         assertThat(result.getQuestionsCount()).isEqualTo(2);
         assertThat(result.getCorrectAnswersCount()).isEqualTo(1);
-        assertThat(output.get(0)).contains("Внимание!");
+        assertThat(output.get(0)).contains("Attention");
     }
 }

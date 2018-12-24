@@ -17,7 +17,7 @@ class ConsoleStudentServiceTest {
     void getStudent() {
         List<String> input = new LinkedList<>(Arrays.asList("Petrov", "Ivan"));
         InOutService inOutService = new FakeInOutService(input, new LinkedList<>());
-        StudentService studentService = new ConsoleStudentService(inOutService);
+        StudentService studentService = new ConsoleStudentService(inOutService, new NoI18n());
 
         Student student = studentService.getStudent();
 

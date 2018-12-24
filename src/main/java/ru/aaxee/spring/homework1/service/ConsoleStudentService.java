@@ -8,8 +8,8 @@ import ru.aaxee.spring.homework1.entity.Student;
 @AllArgsConstructor
 public class ConsoleStudentService implements StudentService {
 
-    private final I18n i18n;
     private final InOutService inOutService;
+    private final I18n i18n;
 
     @Override
     public Student getStudent() {

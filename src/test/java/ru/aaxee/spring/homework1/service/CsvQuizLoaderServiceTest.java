@@ -15,7 +15,7 @@ class CsvQuizLoaderServiceTest {
     @Test
     @DisplayName("Корректный квиз")
     void getCorrectQuizQuestionList() throws QuizException {
-        QuizLoaderService quizLoaderService = new CsvQuizLoaderService();
+        QuizLoaderService quizLoaderService = new CsvQuizLoaderService(new NoI18n());
 
         List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList("geo_quiz");
 
@@ -28,7 +28,7 @@ class CsvQuizLoaderServiceTest {
     @Test
     @DisplayName("Некорректный квиз")
     void getUncorrectQuizQuestionList() {
-        QuizLoaderService quizLoaderService = new CsvQuizLoaderService();
+        QuizLoaderService quizLoaderService = new CsvQuizLoaderService(new NoI18n());
 
         Throwable thrown = catchThrowable(() -> quizLoaderService.getQuizQuestionList("nothing"));
 
