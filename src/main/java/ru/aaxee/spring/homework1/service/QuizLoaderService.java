@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface QuizLoaderService {
 
-    List<QuizQuestion> getQuizQuestionList(String quizName) throws QuizException;
+    List<QuizQuestion> getQuizQuestionList(String quizFilePath) throws QuizException;
 }
