@@ -1,12 +1,12 @@
-package ru.aaxee.spring.homework1.domain.service;
+package ru.aaxee.spring.homework1.service;
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import ru.aaxee.spring.homework1.domain.entity.QuizQuestion;
-import ru.aaxee.spring.homework1.infrastructure.exception.QuizException;
+import ru.aaxee.spring.homework1.entity.QuizQuestion;
+import ru.aaxee.spring.homework1.exception.QuizException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class CsvQuizLoaderService implements QuizLoaderService {
 
+    @Override
     public List<QuizQuestion> getQuizQuestionList(String quizName) throws QuizException {
         Resource geoQuizResource = new ClassPathResource(quizName + ".csv");
         InputStream geoQuizInputStream;

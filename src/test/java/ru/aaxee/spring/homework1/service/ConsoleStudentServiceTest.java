@@ -1,11 +1,12 @@
-package ru.aaxee.spring.homework1.domain.service;
+package ru.aaxee.spring.homework1.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.aaxee.spring.homework1.domain.entity.Student;
+import ru.aaxee.spring.homework1.entity.Student;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,8 +15,9 @@ class ConsoleStudentServiceTest {
     @Test
     @DisplayName("Имя-фамилия")
     void getStudent() {
-        InputStream fakeInput = new ByteArrayInputStream("Petrov\nIvan".getBytes());
-        StudentService studentService = new ConsoleStudentService(fakeInput);
+        List<String> input = new LinkedList<>(Arrays.asList("Petrov", "Ivan"));
+        InOutService inOutService = new FakeInOutService(input, new LinkedList<>());
+        StudentService studentService = new ConsoleStudentService(inOutService);
 
         Student student = studentService.getStudent();
 

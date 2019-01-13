@@ -1,16 +1,16 @@
-package ru.aaxee.spring.homework1.infrastructure;
+package ru.aaxee.spring.homework1;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.aaxee.spring.homework1.domain.entity.QuizQuestion;
-import ru.aaxee.spring.homework1.domain.entity.QuizResult;
-import ru.aaxee.spring.homework1.domain.entity.QuizSettings;
-import ru.aaxee.spring.homework1.domain.entity.Student;
-import ru.aaxee.spring.homework1.domain.service.QuizLoaderService;
-import ru.aaxee.spring.homework1.domain.service.QuizService;
-import ru.aaxee.spring.homework1.domain.service.ResultPrintService;
-import ru.aaxee.spring.homework1.domain.service.StudentService;
-import ru.aaxee.spring.homework1.infrastructure.exception.QuizException;
+import ru.aaxee.spring.homework1.entity.QuizQuestion;
+import ru.aaxee.spring.homework1.entity.QuizResult;
+import ru.aaxee.spring.homework1.entity.QuizSettings;
+import ru.aaxee.spring.homework1.entity.Student;
+import ru.aaxee.spring.homework1.service.QuizLoaderService;
+import ru.aaxee.spring.homework1.service.QuizService;
+import ru.aaxee.spring.homework1.service.ResultPrintService;
+import ru.aaxee.spring.homework1.service.StudentService;
+import ru.aaxee.spring.homework1.exception.QuizException;
 
 import java.util.List;
 
