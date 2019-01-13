@@ -2,6 +2,7 @@ package ru.aaxee.spring.homework1.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 import ru.aaxee.spring.homework1.entity.Student;
 
@@ -19,7 +20,7 @@ class ConsoleResultPrintServiceTest {
         List<String> input = Collections.emptyList();
         List<String> output = new LinkedList<>();
         InOutService inOutService = new FakeInOutService(input, output);
-        ResultPrintService resultPrintService = new ConsoleResultPrintService("Ура!", inOutService);
+        ResultPrintService resultPrintService = new ConsoleResultPrintService(inOutService, new NoI18n());
         Student student = new Student("Petrov", "Ivan");
         QuizResult result = new QuizResult(10, 7);
 
@@ -29,7 +30,7 @@ class ConsoleResultPrintServiceTest {
                 .contains("10")
                 .contains("7")
                 .contains("Petrov")
-                .contains("Ура!")
-                .contains("из");
+                .contains("Congratulation")
+                .contains("count");
     }
 }
