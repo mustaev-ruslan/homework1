@@ -1,4 +1,4 @@
-package ru.aaxee.spring.homework1;
+package ru.aaxee.spring.homework1.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -11,7 +11,7 @@ import java.util.Locale;
 @EnableAspectJAutoProxy
 @Configuration
 @ComponentScan
-@PropertySource("classpath:application.properties")
+@PropertySource(value = "classpath:application.yaml", factory = YamlPropertySourceFactory.class)
 public class AppConfig {
 
     @Value("${locale}")

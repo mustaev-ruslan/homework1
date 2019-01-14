@@ -1,0 +1,4 @@
+locale: en-US
+quiz:
+    maxQuestions: 5
+    name: geo_quiz
