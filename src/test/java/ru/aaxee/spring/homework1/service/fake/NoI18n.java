@@ -1,4 +1,6 @@
-package ru.aaxee.spring.homework1.service;
+package ru.aaxee.spring.homework1.service.fake;
+
+import ru.aaxee.spring.homework1.service.I18n;
 
 import java.text.MessageFormat;
 
