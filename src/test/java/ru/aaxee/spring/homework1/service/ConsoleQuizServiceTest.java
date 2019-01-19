@@ -2,8 +2,9 @@ package ru.aaxee.spring.homework1.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.entity.QuizResult;
 import ru.aaxee.spring.homework1.service.fake.NoI18n;
@@ -16,7 +17,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class ConsoleQuizServiceTest {
 
     @Spy
