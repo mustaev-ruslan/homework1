@@ -14,11 +14,6 @@ public class MessageSourceI18n implements I18n {
     private final Locale locale;
 
     @Override
-    public String translate(String message) {
-        return messageSource.getMessage(message, null, locale);
-    }
-
-    @Override
     public String translate(String message, Object... args) {
         return messageSource.getMessage(message, args, locale);
     }
