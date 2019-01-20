@@ -2,22 +2,41 @@ package ru.aaxee.spring.homework1.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.entity.QuizResult;
+import ru.aaxee.spring.homework1.service.fake.NoI18n;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
+@ExtendWith(MockitoExtension.class)
 class ConsoleQuizServiceTest {
+
+    @Spy
+    NoI18n i18n;
+
+    @Captor
+    ArgumentCaptor<String> writeCaptor;
+
+    @Mock
+    InOutService inOutService;
+
+    @InjectMocks
+    ConsoleQuizService quizService;
 
     @Test
     @DisplayName("Run quiz")
     void run() {
-        List<String> input = new LinkedList<>(Arrays.asList("Ответ1", "Не ответ"));
-        List<String> output = new LinkedList<>();
-        InOutService inOutService = new FakeInOutService(input, output);
-        QuizService quizService = new ConsoleQuizService(inOutService, new NoI18n());
+        when(inOutService.read()).thenReturn("Ответ 1", "Ответ2");
+
         List<QuizQuestion> quizQuestions = new ArrayList<>();
         quizQuestions.add(new QuizQuestion("Вопрос1", "Ответ1"));
         quizQuestions.add(new QuizQuestion("Вопрос2", "Ответ2"));
@@ -27,6 +46,7 @@ class ConsoleQuizServiceTest {
         assertThat(result).isNotNull();
         assertThat(result.getQuestionsCount()).isEqualTo(2);
         assertThat(result.getCorrectAnswersCount()).isEqualTo(1);
-        assertThat(output.get(0)).contains("Attention");
+        verify(inOutService, times(3)).write(writeCaptor.capture());
+        assertThat(writeCaptor.getAllValues().get(0)).contains("Attention");
     }
 }

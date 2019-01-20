@@ -11,7 +11,6 @@ import java.util.Locale;
 @EnableAspectJAutoProxy
 @Configuration
 @ComponentScan
-@PropertySource(value = "classpath:application.yaml", factory = YamlPropertySourceFactory.class)
 public class AppConfig {
 
     @Value("${locale}")
