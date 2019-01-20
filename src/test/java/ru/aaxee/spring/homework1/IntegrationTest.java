@@ -2,13 +2,14 @@ package ru.aaxee.spring.homework1;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.aaxee.spring.homework1.entity.QuizQuestion;
-import ru.aaxee.spring.homework1.entity.QuizResult;
-import ru.aaxee.spring.homework1.entity.Student;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import ru.aaxee.spring.homework1.entity.*;
 import ru.aaxee.spring.homework1.exception.QuizException;
 import ru.aaxee.spring.homework1.service.*;
 import ru.aaxee.spring.homework1.service.fake.NoI18n;
@@ -18,33 +19,35 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
-//@ExtendWith(MockitoExtension.class)
 class IntegrationTest {
 
-    @Mock
+    @TestConfiguration
+    static class TestConfig {
+        @Bean
+        I18n i18n() {
+            return new NoI18n();
+        }
+    }
+
+    @MockBean
     QuizLoaderService quizLoaderService;
 
-    @Mock
+    @MockBean
     InOutService inOutService;
-
-    @Spy
-    NoI18n i18n;
 
     @Captor
     ArgumentCaptor<String> writeCaptor;
 
-    @InjectMocks
+    @Autowired
     ConsoleStudentService studentService;
 
-    @InjectMocks
+    @Autowired
     ConsoleQuizService quizService;
 
-    @InjectMocks
+    @Autowired
     ConsoleResultPrintService resultPrintService;
 
     @Test
