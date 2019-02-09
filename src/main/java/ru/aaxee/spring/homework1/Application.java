@@ -19,7 +19,7 @@ import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
-class Application {
+public class Application {
 
     private final StudentService studentService;
     private final QuizLoaderService quizLoaderService;
@@ -35,7 +35,7 @@ class Application {
 
 
     @Log
-    void run() throws QuizException {
+    public void run() throws QuizException {
         QuizSettings quizSettings = new QuizSettings(quizName, maxQuestions, locale);
         Student student = studentService.getStudent();
         List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList(quizSettings.getFilePath());
