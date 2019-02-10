@@ -9,13 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import ru.aaxee.spring.homework1.entity.*;
+import org.springframework.shell.Shell;
+import ru.aaxee.spring.homework1.entity.QuizQuestion;
 import ru.aaxee.spring.homework1.exception.QuizException;
-import ru.aaxee.spring.homework1.service.*;
+import ru.aaxee.spring.homework1.service.I18n;
+import ru.aaxee.spring.homework1.service.InOutService;
+import ru.aaxee.spring.homework1.service.QuizLoaderService;
 import ru.aaxee.spring.homework1.service.fake.NoI18n;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -33,6 +35,9 @@ class IntegrationTest {
     }
 
     @MockBean
+    Shell shell;
+
+    @MockBean
     QuizLoaderService quizLoaderService;
 
     @MockBean
@@ -42,13 +47,7 @@ class IntegrationTest {
     ArgumentCaptor<String> writeCaptor;
 
     @Autowired
-    ConsoleStudentService studentService;
-
-    @Autowired
-    ConsoleQuizService quizService;
-
-    @Autowired
-    ConsoleResultPrintService resultPrintService;
+    Application application;
 
     @Test
     @DisplayName("Интеграция")
@@ -59,10 +58,7 @@ class IntegrationTest {
         ));
         when(inOutService.read()).thenReturn("Petrov", "Ivan", "a1", "a2");
 
-        Student student = studentService.getStudent();
-        List<QuizQuestion> quizQuestionList = quizLoaderService.getQuizQuestionList("");
-        QuizResult quizResult = quizService.run(quizQuestionList, 2);
-        resultPrintService.print(student, quizResult);
+        application.run();
 
         verify(inOutService, times(6)).write(writeCaptor.capture());
         assertThat(writeCaptor.getAllValues()).isEqualTo(Arrays.asList(
